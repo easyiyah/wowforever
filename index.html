@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>永久服天赋模拟器 / Forever Talents</title>
+<meta name="description" content="魔兽世界经典旧世「永久服」60 级天赋计算器，中英双语对照本地版。WoW Classic Forever talent calculator, bilingual (Chinese / English) local edition.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23121212'/%3E%3Crect x='10' y='10' width='44' height='44' rx='8' fill='none' stroke='%23ffd100' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23ffd100'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="app.css">
+</head>
+<body class="lang-both">
+<div class="app">
+
+  <h1 id="h1"></h1>
+
+  <div class="topbar">
+    <nav class="classes" id="classes" aria-label="Class 职业"></nav>
+    <span class="spacer"></span>
+    <span class="langbar" id="lang" role="group" aria-label="Language 语言"></span>
+    <label class="lvwrap"><span id="levelLabel"></span><select id="level"></select></label>
+    <button class="btn" id="reset"></button>
+    <button class="btn" id="cmp" aria-pressed="false"></button>
+  </div>
+
+  <div class="banner" id="banner"><h2><img id="bannerIcon" alt=""><span id="bannerName"></span></h2></div>
+
+  <div class="status">
+    <strong id="talentsLabel"></strong>
+    <div class="r">
+      <b id="split">0/0/0</b>
+      <span class="left"><span id="leftLabel"></span><b id="left">51</b></span>
+      <span class="lvl"><span id="lvlneedLabel"></span><b id="lvlneed">10</b></span>
+    </div>
+  </div>
+  <div class="legend" id="legend"></div>
+  <div class="main3">
+    <section class="basestats" id="basestats"></section>
+    <div class="trees" id="trees"></div>
+    <section class="gearsim" id="gearsim">
+      <div class="gh">
+        <strong id="gearTitle"></strong>
+        <span class="ghint" id="gearHint"></span>
+      </div>
+      <div class="gslots" id="gslots"></div>
+      <div class="gearsum" id="gearsum"></div>
+      <div class="gearpanel" id="gearpanel"></div>
+      <div class="gtip" id="gtip" hidden></div>
+    </section>
+    <section class="spellbook" id="spellbookHost" aria-label="职业技能书"></section>
+  </div>
+
+  <section class="racials" id="racials">
+    <div class="rh">
+      <strong id="racialsTitle"></strong>
+      <label class="chk"><input type="checkbox" id="allRaces"><span id="showAllLabel"></span></label>
+      <span class="cnt" id="raceCnt"></span>
+    </div>
+    <div class="factions" id="factions"></div>
+  </section>
+
+  <div class="help" id="help"></div>
+  <p class="help src" id="src"></p>
+
+</div>
+
+<div class="tip" id="tip" hidden></div>
+<div class="sheet" id="sheet" hidden>
+  <button class="x" id="sheetClose" aria-label="Close">×</button>
+  <div class="tip-body" id="sheetBody"></div>
+  <div class="acts">
+    <button class="rem" id="sheetRem"></button>
+    <button class="add" id="sheetAdd"></button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<!-- 原站数据（英文，结构与数值与原站完全一致） -->
+<script src="talents.js"></script>
+<script src="spelldesc.js"></script>
+<script src="skills-cn.js"></script>
+<script src="skills-cn-extra.js"></script>
+<script src="skills-zh-params.js"></script>
+<script src="spellbooks.js"></script>
+<script src="racials.js"></script>
+<!-- 种族基础属性（本地面板扩展） -->
+<script src="stats.js"></script>
+<!-- 30级装备库（本地面板扩展） -->
+<script src="gear30.js"></script>
+<!-- 中文译文 -->
+<script src="zh-talents.js"></script>
+<script src="i18n.js"></script>
+<script>
+  /* 本地图标与背景图（由 build/fetch-assets.mjs 抓取，可完全离线）。
+     删掉这一行就会回退到 Wowhead 在线素材；本地文件缺失时也会自动回退。 */
+  window.FT_ASSETS = { icon: "icons/", bg: "bg/" };
+</script>
+<!-- 程序 -->
+<script src="app.js"></script>
+</body>
+</html>

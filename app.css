@@ -1,0 +1,342 @@
+/* =========================================================================
+   Forever Talents 双语对照版 —— 样式
+   基于原站 (forevertalents.up.railway.app) 的样式，加入中英双语排版规则。
+   ========================================================================= */
+:root{
+  --bg:#121212; --panel:#1e1e1e; --panel2:#262626; --bar:#2b2b2b; --line:#3a3a3a;
+  --ink:#e8e8e8; --ink2:#bdbdbd; --muted:#8a8a8a;
+  --gold:#ffd100; --gold2:#c89b1a; --green:#1eff00; --green2:#4fbf3a; --blue:#58a6ff; --red:#ff4d4d;
+  --tip-bg:#0e0e10; --tip-line:#5a4a1e;
+  --en:#9fb0bd;            /* 英文次要文字 */
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Open Sans","Segoe UI",system-ui,-apple-system,"Microsoft YaHei","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC",sans-serif;
+  font-size:14px;line-height:1.45}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+select{font:inherit}
+button:focus-visible,select:focus-visible,input:focus-visible,.talent:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* ---------------- 双语排版 bilingual typography ---------------- */
+.pr{display:inline}
+.pr.block{display:block}
+.pr.block>.zh{display:block}
+.pr.block>.en{display:block;color:var(--en);font-size:.9em;line-height:1.35;margin-top:1px}
+.pr.inl>.en{color:var(--en);font-size:.85em;margin-left:.45em}
+body.lang-zh .en{display:none!important}
+body.lang-en .zh{display:none!important}
+body.lang-en .pr.inl>.en{margin-left:0}
+body.lang-en .pr.block>.en{font-size:1em;color:inherit}
+
+.app{max-width:1240px;margin:0 auto;padding:16px 16px 48px}
+h1{margin:0 0 12px;font-size:26px;font-weight:600;letter-spacing:-.01em}
+h1>small{display:block;font-size:13px;font-weight:400;color:var(--muted);margin-top:4px;line-height:1.5}
+h1 .pr.block>.en{font-size:15px;font-weight:400;color:var(--ink2)}
+
+/* ---------------- 顶栏 topbar ---------------- */
+.topbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:var(--bar);border-radius:4px;padding:8px 10px}
+.classes{display:flex;flex-wrap:wrap;gap:4px}
+.clsbtn{display:flex;align-items:center;gap:6px;padding:4px 8px 4px 4px;border-radius:4px;background:#3a3a3a;color:var(--ink2)}
+.clsbtn img{width:22px;height:22px;border-radius:3px;display:block}
+.clsbtn .cn{font-weight:700;font-size:13px}
+.clsbtn .ce{font-size:10px;color:var(--muted);letter-spacing:.02em}
+.clsbtn[aria-pressed="true"]{background:#505050;color:#fff;box-shadow:inset 0 0 0 1px var(--gold2)}
+.clsbtn[aria-pressed="true"] .ce{color:var(--gold)}
+.clsbtn.soon{opacity:.4;cursor:not-allowed}
+.topbar .spacer{flex:1}
+.langbar{display:flex;gap:2px;background:#222;border-radius:4px;padding:2px}
+.langbtn{padding:3px 9px;border-radius:3px;font-size:12px;font-weight:600;color:var(--ink2)}
+.langbtn[aria-pressed="true"]{background:#5a4a1e;color:var(--gold)}
+.lvwrap{display:flex;align-items:center;gap:6px;color:var(--ink2);font-weight:600}
+.topbar select{background:#3a3a3a;color:#fff;border:0;border-radius:4px;padding:5px 8px}
+.topbar .btn{background:#3a3a3a;border-radius:4px;padding:5px 10px;font-weight:600;color:#fff}
+.topbar .btn:hover{background:#4a4a4a}
+.topbar .btn[aria-pressed="true"]{background:#5a4a1e;color:var(--gold)}
+
+/* ---------------- 横幅 banner ---------------- */
+.banner{margin-top:10px;height:96px;border-radius:4px;background:#2a2a2a center/cover no-repeat;position:relative;overflow:hidden;display:flex;align-items:center;padding:0 20px}
+.banner::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.2))}
+.banner h2{position:relative;margin:0;font-size:24px;font-weight:400;display:flex;align-items:center;gap:12px}
+.banner h2 img{width:40px;height:40px;border-radius:4px;border:1px solid #000}
+.banner h2 .en{font-size:15px;color:var(--ink2)}
+
+/* ---------------- 状态条 status ---------------- */
+.status{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--panel);padding:10px 12px;margin-top:8px;border-radius:4px 4px 0 0}
+.status strong{font-size:16px}
+.status .r{font-variant-numeric:tabular-nums;color:var(--ink2);display:flex;flex-wrap:wrap;gap:2px 16px;justify-content:flex-end;align-items:baseline}
+.status .r>b{color:var(--blue);font-weight:700;font-size:16px}
+.status .r .left b{color:var(--green2)}
+.status .r .left b.over{color:var(--red)}
+.status .r .lvl{color:var(--muted)}
+.status .r .lvl b{color:var(--ink2);font-weight:600}
+
+/* ---------------- 天赋树 trees ---------------- */
+.trees{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;background:var(--panel);padding:0 6px 6px;border-radius:0 0 4px 4px}
+@media (max-width:980px){.trees{grid-template-columns:1fr}}
+/* 全宽布局：天赋树(上) | 技能书(下)，基础属性/装备配装已隐藏 */
+.main3{display:grid;grid-template-columns:1fr;grid-template-rows:auto auto;align-items:start;gap:0;margin-top:10px}
+.main3 .basestats{display:none}
+.main3 .gearsim{display:none}
+.main3 .trees{grid-column:1;grid-row:1;min-width:0}
+.main3 .spellbook{grid-column:1;grid-row:2;margin-top:0;width:auto}
+@media (max-width:1280px){
+  .main3{grid-template-columns:1fr}
+  .main3 .basestats{display:none}
+  .main3 .trees{grid-column:1;grid-row:auto}
+  .main3 .gearsim{display:none}
+  .main3 .spellbook{grid-column:1;grid-row:auto;width:100%}
+}
+.tree{background:var(--panel2);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;--tico:44px;--trow:64px;--rk-h:17px;--rk-off:-8px;--tfs:13px;--tfs-rk:11px}
+.thead{display:flex;align-items:center;gap:8px;padding:8px 10px;background:#333}
+.thead img{width:30px;height:30px;border-radius:50%;border:2px solid #4fc3f7;box-shadow:0 0 0 1px #000}
+.thead .n{font-weight:700;font-size:15px;flex:1}
+.thead .n .en{font-weight:400}
+.thead .c{font-variant-numeric:tabular-nums;color:var(--ink2);font-weight:600}
+.thead .c b{color:#fff}
+.thead .tr{opacity:.55;font-size:15px;line-height:1;padding:2px 4px;border-radius:3px}
+.thead .tr:hover{opacity:1;background:#444}
+.tbody{position:relative;flex:1;background:#111 center/cover no-repeat;padding:14px 8px 16px}
+.tbody::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.68));pointer-events:none}
+.grid{position:relative;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:var(--trow);gap:4px 0}
+.tree.empty .tbody{display:flex;align-items:center;justify-content:center;min-height:260px;color:var(--ink2);text-align:center;font-style:italic;padding:20px}
+.tree.empty .tbody p{position:relative;margin:0;max-width:26ch}
+.arrows{position:absolute;inset:0;pointer-events:none;overflow:visible}
+.arrows line,.arrows polyline{stroke:#c9c9c9;stroke-width:2;fill:none;opacity:.55}
+.arrows .on{stroke:var(--gold);opacity:1}
+.arrows marker path{fill:#c9c9c9}
+.arrows marker.on path{fill:var(--gold)}
+
+/* ---------------- 天赋格 talent cell ---------------- */
+.talent{position:relative;width:var(--tico);height:var(--tico);margin:4px auto 0;border-radius:5px;cursor:pointer;user-select:none;background:#000;box-shadow:0 0 0 1px #000,0 0 0 2px #6b6b6b}
+.talent img,.talent .ab{position:absolute;inset:0;width:100%;height:100%;border-radius:5px;object-fit:cover}
+.talent .ab{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:var(--tfs);letter-spacing:.02em;color:#ddd;background:linear-gradient(135deg,#3a3a3a,#1a1a1a)}
+.talent.locked img,.talent.locked .ab{filter:grayscale(1) brightness(.55)}
+.talent.avail,.talent.partial{box-shadow:0 0 0 1px #000,0 0 0 2px var(--green2)}
+.talent.maxed{box-shadow:0 0 0 1px #000,0 0 0 2px var(--gold)}
+.talent:hover{box-shadow:0 0 0 1px #000,0 0 0 2px #fff}
+.talent .rk{position:absolute;right:var(--rk-off);bottom:var(--rk-off);padding:0 4px;min-width:calc(var(--rk-h) + 9px);height:var(--rk-h);line-height:var(--rk-h);border-radius:3px;background:#000;border:1px solid #444;color:#aaa;font-size:var(--tfs-rk);font-weight:700;text-align:center;font-variant-numeric:tabular-nums}
+.talent.avail .rk,.talent.partial .rk{color:var(--green);border-color:#2a5a1a}
+.talent.maxed .rk{color:var(--gold);border-color:#6a5510}
+.talent.unknown,.talent.untranslated{outline:1px dashed #a88}
+.badge{display:none;position:absolute;left:-7px;top:-7px;min-width:16px;height:16px;padding:0 2px;border-radius:9px;font-size:10px;font-weight:800;line-height:16px;text-align:center;color:#000;border:1px solid #000;z-index:2}
+body.cmp .badge{display:block}
+.badge .en{display:none}
+body.lang-en .badge .zh{display:none}
+body.lang-en .badge .en{display:inline}
+.badge.new{background:#4ade80}.badge.changed{background:#fbbf24}.badge.moved{background:#60a5fa}
+body.cmp .talent.same img,body.cmp .talent.same .ab{filter:grayscale(.6) brightness(.75)}
+
+.legend{display:none;align-items:center;gap:14px;flex-wrap:wrap;background:var(--panel);padding:6px 12px;font-size:12px;color:var(--ink2);border-top:1px solid var(--line)}
+body.cmp .legend{display:flex}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.legend .pr.block>.en{font-size:.92em}
+.removed{display:none;position:relative;margin:8px 4px 0;padding:8px 10px;background:rgba(0,0,0,.55);border-radius:4px;font-size:12px;color:var(--ink2)}
+body.cmp .removed{display:block}
+.removed b{color:#f87171;display:block;margin-bottom:4px;font-size:11px;letter-spacing:.06em}
+.removed span{display:inline-block;margin:1px 8px 1px 0;border-bottom:1px dotted #666;cursor:help}
+.removed i.en{color:var(--muted);font-style:normal;font-size:.9em}
+
+/* ---------------- 悬浮提示 tooltip ---------------- */
+.tip{position:fixed;z-index:50;width:340px;max-width:calc(100vw - 16px);background:var(--tip-bg);color:#fff;border:1px solid var(--tip-line);border-radius:5px;padding:9px 11px;font-size:13px;line-height:1.4;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.7)}
+.tip[hidden]{display:none}
+.tip .n{font-size:15px;font-weight:600}
+.tip .n .en{font-size:13px;font-weight:400;color:var(--en)}
+.tip .r,.tip .cost{color:#fff}
+.tip .cost{color:#bbb;font-size:12.5px}
+.tip .cost .en{color:#8b969f}
+.tip .p{margin-top:7px}
+.tip .d{margin-top:2px;white-space:pre-line}
+.tip .d .zh{color:var(--gold)}
+.tip .d .en{color:#a89a63}
+.tip .est{color:#d8c58a;font-style:italic;margin-top:4px;font-size:12px}
+.tip .est .en{color:#b0a077}
+.tip .next{margin-top:7px;color:var(--ink2)}
+.tip .req{color:var(--red);margin-top:6px}
+.tip .cta{color:var(--green);margin-top:7px}
+.tip .cta.no{color:#999}
+.tip .cl{margin-top:8px;padding-top:6px;border-top:1px solid #333;color:#bbb;font-size:12px;white-space:pre-line}
+.tip .cl b{color:#ddd;font-weight:600}
+.tip .cl .t{color:#9aa;margin-top:2px}
+.tip .cl .en{color:#8b969f}
+
+/* ---------------- 种族特长 racials ---------------- */
+.racials{margin-top:10px;background:var(--panel);border-radius:4px;padding:10px 12px}
+.racials .rh{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.racials .rh strong{font-size:16px}
+.racials .rh .chk{display:flex;align-items:center;gap:6px;color:var(--ink2);font-size:13px;cursor:pointer}
+.racials .rh .cnt{color:var(--muted);font-size:12px}
+.racials .rh #raceCls .en{font-size:.9em}
+.factions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:980px){.factions{grid-template-columns:1fr}}
+.faction h3{margin:0 0 6px;font-size:13px;letter-spacing:.08em;padding-bottom:4px;border-bottom:1px solid var(--line)}
+.faction h3 .en{text-transform:uppercase}
+.faction.horde h3{color:#e6432f}.faction.alliance h3{color:#3d8bff}
+.race{background:var(--panel2);border-radius:4px;padding:8px 10px;margin-bottom:6px}
+.race.dim{opacity:.4}
+.race .rn{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-weight:700;margin-bottom:4px;flex-wrap:wrap}
+.race .rn .name{font-size:14px}
+.race .rn small{font-weight:400;color:var(--muted);font-size:11px;text-align:right}
+.race ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:13px}
+.race li b{color:var(--gold);font-weight:600}
+.race li b i.en{color:var(--gold2);font-style:normal;font-weight:400;font-size:.9em}
+.race li span{color:var(--ink2)}
+.race li span.zh{display:block}
+.race li span.en{display:block;color:var(--en);font-size:.9em}
+body.lang-en .race li span.en{color:var(--ink2);font-size:1em}
+body.lang-en .race li b i.en{font-weight:600;color:var(--gold)}
+
+/* ---------------- 种族基础属性 base stats ---------------- */
+.basestats{margin-top:10px;background:var(--panel);border-radius:4px;padding:10px 12px}
+.main3 .basestats{padding:10px}
+.basestats .bshead{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.basestats .bshead strong{font-size:16px}
+.basestats .bscls{color:var(--gold);font-weight:600;font-size:14px}
+.basestats .bslv{color:var(--blue);font-weight:600;font-size:13px}
+.basestats .bslv .en{color:var(--en)}
+.basestats .bstbl{overflow-x:auto}
+.basestats table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+.basestats th,.basestats td{border:1px solid var(--line);padding:5px 10px;text-align:center;white-space:nowrap}
+.basestats thead th{background:var(--bar);color:var(--ink2);font-weight:600;font-size:12px}
+.basestats tbody th{background:var(--panel2);text-align:left;font-weight:600;min-width:120px}
+.basestats tbody th .en{font-size:.85em}
+.basestats tbody td{color:var(--ink)}
+.basestats tbody td.int{color:var(--gold);font-weight:700;background:rgba(255,209,0,.06)}
+.basestats tbody td.ap{color:#ffb84d;font-weight:600}
+.basestats tbody td.sp{color:#6fc3ff;font-weight:600}
+.basestats tbody td.hp{color:#ff8f6b;font-weight:600}
+.basestats tbody td.mp{color:#6fc3ff;font-weight:600}
+.basestats tbody td.mp5{color:#bde09a;font-weight:600}
+.basestats tbody td.cc{color:#ff8f6b;font-weight:600}
+.basestats tbody td.cs{color:#b39dff;font-weight:600}
+.basestats tbody td.dd{color:#9fd8a8;font-weight:600}
+.basestats tbody td.bl{color:#d8c58a;font-weight:600}
+.basestats tbody td.mh{color:#ffd9a0;font-weight:600}
+.basestats tbody td.sh{color:#a8d0ff;font-weight:600}
+.basestats .bsnote .fx{color:#c9a86a;font-size:11.5px;display:block;margin-top:2px}
+.basestats .bsnote .fx .en{color:#8a7a4f}
+.basestats tbody td.est{color:#d8c58a}
+.basestats tbody td.est.int{color:#ffd700;background:rgba(255,209,0,.1)}
+.basestats tbody td.na{color:var(--muted);font-style:italic;text-align:center}
+.basestats .bsnote{color:var(--muted);font-size:11px;margin:8px 2px 0;line-height:1.5}
+.basestats .bsnote .en{color:#6f7a83}
+/* 左栏窄版：转置后属性行×种族列 */
+.main3 .basestats table{font-size:12px}
+.main3 .basestats th,.main3 .basestats td{padding:3px 5px}
+.main3 .basestats tbody th{min-width:0;width:96px;font-size:12px}
+.main3 .basestats thead th{font-size:11px;padding:3px 4px}
+/* 种族对钩单选框（勾选后右栏面板跟随） */
+.basestats .racerdo{display:inline-flex;align-items:center;gap:3px;cursor:pointer;font-weight:600;white-space:nowrap}
+.basestats .racerdo input{appearance:none;-webkit-appearance:none;width:13px;height:13px;border:1px solid #7a8087;border-radius:50%;background:#1c1f24;position:relative;cursor:pointer;flex:0 0 auto;margin:0}
+.basestats .racerdo input:checked{background:var(--gold);border-color:#ffe066;box-shadow:0 0 4px rgba(255,215,0,.6)}
+.basestats .racerdo input:checked::after{content:"✓";position:absolute;left:1.5px;top:-3px;color:#000;font-size:12px;font-weight:900;line-height:1}
+.basestats .racerdo input:disabled{cursor:not-allowed;opacity:.28;border-color:#555}
+.basestats .racerdo input:disabled + span{opacity:.42}
+.basestats .racerdo input:disabled + span::after{content:"（暂无数据）";font-weight:400;font-size:10px;color:#8a6a6a;margin-left:2px}
+@media (max-width:760px){.basestats table{font-size:12px}.basestats th,.basestats td{padding:4px 6px}}
+
+/* ---------------- 职业技能书 spellbook（BlizzCon 2026 demo） ---------------- */
+.spellbook{width:calc(100% - 330px);margin:12px 0 0;background:#121418;border:1px solid #2c313a;border-radius:4px;padding:8px 10px;box-sizing:border-box}
+@media (max-width:1280px){.spellbook{width:100%}}
+.spellbook .sbt{width:100%;text-align:left;background:#1a1d23;color:#e8e6e3;border:1px solid #3a3f48;border-radius:4px;padding:6px 8px;font-size:13px;cursor:pointer;line-height:1.4}
+.spellbook .sbt:hover{border-color:#ffd700;color:#fff}
+.spellbook .sbt .sbcls{color:var(--gold);font-weight:600}
+.spellbook .sbt .sbcls .en{color:#8a7a4f}
+.spellbook .sbt .sbarr{float:right;color:var(--gold);font-weight:700}
+.spellbook .sbb{margin-top:8px;max-height:none;padding-right:2px}
+.spellbook .sbgroup{font-size:12px;font-weight:700;color:var(--blue);margin:10px 0 5px;letter-spacing:.3px}
+.spellbook .sbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:4px 8px}
+.spellbook .sbi{display:flex;align-items:center;gap:6px;padding:3px 6px;border-radius:3px;font-size:12px;line-height:1.35;cursor:help;min-width:0}
+.spellbook .sbi:hover{background:rgba(255,209,0,.08)}
+.spellbook .sbic{width:22px;height:22px;border-radius:3px;flex:0 0 22px;object-fit:cover;background:#14171c}
+.spellbook .sbna{display:inline-flex;align-items:center;justify-content:center;color:#c9a86a;font-weight:700;background:#14171c}
+.spellbook .sbz{color:#f0ede6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.spellbook .sbr{color:#6fc3ff;font-size:10.5px;white-space:nowrap;margin-left:auto;flex:0 0 auto}
+.spellbook .sbsrc{color:var(--muted);font-size:10.5px;margin:8px 2px 0;line-height:1.45}
+.spellbook .sbsrc .en{color:#6f7a83}
+.spellbook .sbnotes{margin-top:12px;border-top:1px dashed rgba(255,209,0,.22);padding-top:8px}
+.spellbook .sbnotes .sbnt{font-size:12px;font-weight:700;color:var(--gold);margin-bottom:6px;letter-spacing:.3px}
+.spellbook .sbnotes .sbnt .en{color:#8a7a4f;font-weight:400}
+.spellbook .sbnotes p{color:#cfc9bd;font-size:12px;line-height:1.65;margin:0 0 7px;padding-left:10px;position:relative}
+.spellbook .sbnotes p::before{content:"·";position:absolute;left:2px;color:#ffd700;font-weight:700}
+.basestats .bsmin,.gearsim .gsmin{margin-left:auto;background:#1a1d23;color:#c9a86a;border:1px solid #3a3f48;border-radius:3px;padding:2px 8px;font-size:11.5px;cursor:pointer;white-space:nowrap}
+.basestats .bsmin:hover,.gearsim .gsmin:hover{border-color:#ffd700;color:#fff}
+
+/* ---------------- 30级装备配装 gear sim ---------------- */
+.gearsim{margin-top:10px;background:var(--panel);border-radius:4px;padding:10px 12px;position:relative}
+.main3 .gearsim{padding:10px}
+.main3 .gearsim table.gp{font-size:12px}
+.main3 .gearsim table.gp th,.main3 .gearsim table.gp td{padding:3px 6px}
+.main3 .gearsim table.gp thead th{font-size:11px}
+.main3 .gearsim table.gp tbody th{width:90px}
+.gearsim .gh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.gearsim .gh strong{font-size:16px}
+.gearsim .gh .ghint{color:var(--muted);font-size:11.5px}
+.gearsim .gh .ghint .en{color:#6f7a83}
+.gearsim .gsrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;position:relative;z-index:1}
+.gearsim .gsrow.open{position:relative;z-index:60}
+.gearsim .gwrap{position:relative}
+.gearsim .gslotbtn{background:#1a1d23;color:#e8e6e3;border:1px solid #3a3f48;border-radius:3px;padding:4px 8px;font-size:12.5px;cursor:pointer;white-space:nowrap}
+.gearsim .gslotbtn:hover{border-color:#ffd700;color:#fff}
+.gearsim .gslotbtn .gzl{color:#9aa0a6}
+.gearsim .gslotbtn .gzv{font-weight:600}
+.gearsim .gslotbtn b{color:#ffd700;font-size:10px;margin-left:3px}
+.gearsim .glist{position:absolute;top:calc(100% + 4px);left:0;z-index:40;background:#121418;border:1px solid #3a3f48;border-radius:4px;min-width:300px;max-width:340px;max-height:320px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.6)}
+.gearsim .glist[hidden]{display:none}
+.gearsim .gitem{display:flex;align-items:center;gap:7px;padding:5px 9px;font-size:12.5px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.04)}
+.gearsim .gitem:hover{background:rgba(255,215,0,.1)}
+.gearsim .gitem i{width:3px;height:14px;border-radius:2px;flex:0 0 auto}
+.gearsim .gitem .gn{flex:0 0 auto;font-weight:600}
+.gearsim .gitem .gm{color:#7b8289;font-size:11px;white-space:nowrap}
+.gearsim .gitem.gempty{color:#7b8289;font-style:italic;cursor:default;padding:8px 10px;max-width:320px;white-space:normal;line-height:1.4}
+.gearsim .gitem.gempty:hover{background:none}
+.gearsim .gitem.gunsel{color:#9aa0a6;font-style:italic;border-bottom:1px dashed rgba(255,255,255,.12)}
+.gearsim .gtip{position:fixed;z-index:90;background:#101215;border:1px solid #4a5058;border-radius:5px;padding:8px 10px;width:270px;font-size:12.5px;line-height:1.55;box-shadow:0 10px 30px rgba(0,0,0,.7);pointer-events:none}
+.gearsim .gtip[hidden]{display:none}
+.gearsim .gtip .gtn{font-size:14px;font-weight:700;margin-bottom:2px}
+.gearsim .gtip .gtq{color:#9aa0a6;font-size:11.5px;margin-bottom:4px}
+.gearsim .gtip .gtq .en{color:#6f7a83}
+.gearsim .gtip .gts{color:#e8e6e3;margin-bottom:4px}
+.gearsim .gtip .gte{color:#c9a86a;font-size:11.5px;margin-bottom:4px}
+.gearsim .gtip .gtf{color:#7b8289;font-size:11px;border-top:1px solid rgba(255,255,255,.08);padding-top:4px}
+.gearsim .gcard{background:rgba(255,209,0,.07);border:1px solid rgba(255,209,0,.25);border-radius:4px;padding:6px 10px;font-size:13px;margin-top:4px}
+.gearsim .gcard b{color:var(--gold)}
+.gearsim table.gp{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums;margin-top:8px}
+.gearsim table.gp th,.gearsim table.gp td{border:1px solid var(--line);padding:5px 9px;text-align:center;white-space:nowrap}
+.gearsim table.gp thead th{background:var(--bar);color:var(--ink2);font-weight:600;font-size:11.5px}
+.gearsim table.gp tbody th{background:var(--panel2);text-align:left;font-weight:600;font-size:12px}
+.gearsim table.gp tbody th .en{font-size:.85em}
+.gearsim table.gp td.hp{color:#ff8f6b;font-weight:600}
+.gearsim table.gp td.mp{color:#6fc3ff;font-weight:600}
+.gearsim table.gp td em.up{color:#7ee787;font-style:normal;font-size:11px}
+.gearsim .gnotes{color:#c9a86a;font-size:11.5px;margin-top:6px;line-height:1.5}
+.gearsim .gnotes .en{color:#8a7a4f}
+.gearsim .gwnote{color:#d8b45a;font-size:11px;line-height:1.5;margin-top:6px;border-top:1px dashed rgba(255,215,0,.25);padding-top:5px}
+.gearsim .gwnote .en{color:#8a7a4f}
+@media (max-width:760px){.gearsim .glist{min-width:250px;max-width:280px}.gearsim .gitem .gm{max-width:120px;overflow:hidden;text-overflow:ellipsis}.gearsim table.gp{font-size:11.5px}.gearsim table.gp th,.gearsim table.gp td{padding:3px 5px}}
+
+/* ---------------- 帮助文字 ---------------- */
+.help{color:var(--muted);font-size:12px;margin:10px 2px 0;max-width:92ch}
+.help p{margin:0 0 6px}
+.help .pr.block>.en{color:#6f7a83}
+.help.src{color:#6f7a83}
+.help kbd{border:1px solid #444;border-radius:3px;padding:0 4px;background:#222;font-family:inherit}
+
+/* ---------------- 触屏底部面板 bottom sheet ---------------- */
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--tip-bg);border-top:1px solid var(--tip-line);padding:12px 14px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -10px 30px rgba(0,0,0,.6);font-size:14px;line-height:1.4;max-height:70vh;overflow:auto}
+.sheet[hidden]{display:none}
+.sheet .tip-body .n{font-size:16px;font-weight:600}
+.sheet .tip-body .d .zh{color:var(--gold)}
+.sheet .tip-body .d .en{color:#a89a63}
+.sheet .tip-body .est{color:#d8c58a;font-style:italic;font-size:12px;margin-top:4px}
+.sheet .tip-body .req{color:var(--red);margin-top:6px}
+.sheet .acts{display:flex;gap:8px;margin-top:10px}
+.sheet .acts button{flex:1;padding:10px;border-radius:6px;font-weight:700;font-size:15px;background:#2a2a2a;color:#fff}
+.sheet .acts .add{background:#1f5a1f;color:#bfffbf}
+.sheet .acts .rem{background:#5a1f1f;color:#ffbfbf}
+.sheet .acts button:disabled{opacity:.35}
+.sheet .x{position:absolute;right:10px;top:8px;font-size:20px;color:#aaa;padding:4px 8px}
+@media (hover:none){.tip{display:none!important}}
+
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#000;color:#fff;padding:7px 14px;border-radius:4px;border:1px solid #555;opacity:0;transition:opacity .15s;pointer-events:none;font-size:13px;z-index:80;max-width:90vw;text-align:center}
+.toast.show{opacity:1}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
