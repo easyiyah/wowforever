@@ -1,13 +1,12 @@
 /* =========================================================================
-   Forever Talents 双语对照版 —— 样式
-   基于原站 (forevertalents.up.railway.app) 的样式，加入中英双语排版规则。
-   ========================================================================= */
+   Forever Talents 鍙岃瀵圭収鐗?鈥斺€?鏍峰紡
+   鍩轰簬鍘熺珯 (forevertalents.up.railway.app) 鐨勬牱寮忥紝鍔犲叆涓嫳鍙岃鎺掔増瑙勫垯銆?   ========================================================================= */
 :root{
   --bg:#121212; --panel:#1e1e1e; --panel2:#262626; --bar:#2b2b2b; --line:#3a3a3a;
   --ink:#e8e8e8; --ink2:#bdbdbd; --muted:#8a8a8a;
   --gold:#ffd100; --gold2:#c89b1a; --green:#1eff00; --green2:#4fbf3a; --blue:#58a6ff; --red:#ff4d4d;
   --tip-bg:#0e0e10; --tip-line:#5a4a1e;
-  --en:#9fb0bd;            /* 英文次要文字 */
+  --en:#9fb0bd;            /* 鑻辨枃娆¤鏂囧瓧 */
 }
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);
@@ -17,7 +16,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 select{font:inherit}
 button:focus-visible,select:focus-visible,input:focus-visible,.talent:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
-/* ---------------- 双语排版 bilingual typography ---------------- */
+/* ---------------- 鍙岃鎺掔増 bilingual typography ---------------- */
 .pr{display:inline}
 .pr.block{display:block}
 .pr.block>.zh{display:block}
@@ -33,7 +32,7 @@ h1{margin:0 0 12px;font-size:26px;font-weight:600;letter-spacing:-.01em}
 h1>small{display:block;font-size:13px;font-weight:400;color:var(--muted);margin-top:4px;line-height:1.5}
 h1 .pr.block>.en{font-size:15px;font-weight:400;color:var(--ink2)}
 
-/* ---------------- 顶栏 topbar ---------------- */
+/* ---------------- 椤舵爮 topbar ---------------- */
 .topbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:var(--bar);border-radius:4px;padding:8px 10px}
 .classes{display:flex;flex-wrap:wrap;gap:4px}
 .clsbtn{display:flex;align-items:center;gap:6px;padding:4px 8px 4px 4px;border-radius:4px;background:#3a3a3a;color:var(--ink2)}
@@ -53,14 +52,14 @@ h1 .pr.block>.en{font-size:15px;font-weight:400;color:var(--ink2)}
 .topbar .btn:hover{background:#4a4a4a}
 .topbar .btn[aria-pressed="true"]{background:#5a4a1e;color:var(--gold)}
 
-/* ---------------- 横幅 banner ---------------- */
+/* ---------------- 妯箙 banner ---------------- */
 .banner{margin-top:10px;height:96px;border-radius:4px;background:#2a2a2a center/cover no-repeat;position:relative;overflow:hidden;display:flex;align-items:center;padding:0 20px}
 .banner::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.2))}
 .banner h2{position:relative;margin:0;font-size:24px;font-weight:400;display:flex;align-items:center;gap:12px}
 .banner h2 img{width:40px;height:40px;border-radius:4px;border:1px solid #000}
 .banner h2 .en{font-size:15px;color:var(--ink2)}
 
-/* ---------------- 状态条 status ---------------- */
+/* ---------------- 鐘舵€佹潯 status ---------------- */
 .status{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--panel);padding:10px 12px;margin-top:8px;border-radius:4px 4px 0 0}
 .status strong{font-size:16px}
 .status .r{font-variant-numeric:tabular-nums;color:var(--ink2);display:flex;flex-wrap:wrap;gap:2px 16px;justify-content:flex-end;align-items:baseline}
@@ -70,15 +69,16 @@ h1 .pr.block>.en{font-size:15px;font-weight:400;color:var(--ink2)}
 .status .r .lvl{color:var(--muted)}
 .status .r .lvl b{color:var(--ink2);font-weight:600}
 
-/* ---------------- 天赋树 trees ---------------- */
+/* ---------------- 澶╄祴鏍?trees ---------------- */
 .trees{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;background:var(--panel);padding:0 6px 6px;border-radius:0 0 4px 4px}
 @media (max-width:980px){.trees{grid-template-columns:1fr}}
-/* 全宽布局：天赋树(上) | 技能书(下)，基础属性/装备配装已隐藏 */
+/* 鍏ㄥ甯冨眬锛氬ぉ璧嬫爲(涓? | 鎶€鑳戒功(涓?锛屽熀纭€灞炴€?瑁呭閰嶈宸查殣钘?*/
 .main3{display:grid;grid-template-columns:1fr;grid-template-rows:auto auto;align-items:start;gap:0;margin-top:10px}
 .main3 .basestats{display:none}
 .main3 .gearsim{display:none}
 .main3 .trees{grid-column:1;grid-row:1;min-width:0}
-.main3 .spellbook{grid-column:1;grid-row:2;margin-top:0;width:auto}
+.main3 .gearinfo{grid-column:1;grid-row:2;min-width:0}
+.main3 .spellbook{grid-column:1;grid-row:3;margin-top:0;width:auto}
 @media (max-width:1280px){
   .main3{grid-template-columns:1fr}
   .main3 .basestats{display:none}
@@ -106,7 +106,7 @@ h1 .pr.block>.en{font-size:15px;font-weight:400;color:var(--ink2)}
 .arrows marker path{fill:#c9c9c9}
 .arrows marker.on path{fill:var(--gold)}
 
-/* ---------------- 天赋格 talent cell ---------------- */
+/* ---------------- 澶╄祴鏍?talent cell ---------------- */
 .talent{position:relative;width:var(--tico);height:var(--tico);margin:4px auto 0;border-radius:5px;cursor:pointer;user-select:none;background:#000;box-shadow:0 0 0 1px #000,0 0 0 2px #6b6b6b}
 .talent img,.talent .ab{position:absolute;inset:0;width:100%;height:100%;border-radius:5px;object-fit:cover}
 .talent .ab{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:var(--tfs);letter-spacing:.02em;color:#ddd;background:linear-gradient(135deg,#3a3a3a,#1a1a1a)}
@@ -136,7 +136,7 @@ body.cmp .removed{display:block}
 .removed span{display:inline-block;margin:1px 8px 1px 0;border-bottom:1px dotted #666;cursor:help}
 .removed i.en{color:var(--muted);font-style:normal;font-size:.9em}
 
-/* ---------------- 悬浮提示 tooltip ---------------- */
+/* ---------------- 鎮诞鎻愮ず tooltip ---------------- */
 .tip{position:fixed;z-index:50;width:340px;max-width:calc(100vw - 16px);background:var(--tip-bg);color:#fff;border:1px solid var(--tip-line);border-radius:5px;padding:9px 11px;font-size:13px;line-height:1.4;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.7)}
 .tip[hidden]{display:none}
 .tip .n{font-size:15px;font-weight:600}
@@ -159,7 +159,7 @@ body.cmp .removed{display:block}
 .tip .cl .t{color:#9aa;margin-top:2px}
 .tip .cl .en{color:#8b969f}
 
-/* ---------------- 种族特长 racials ---------------- */
+/* ---------------- 绉嶆棌鐗归暱 racials ---------------- */
 .racials{margin-top:10px;background:var(--panel);border-radius:4px;padding:10px 12px}
 .racials .rh{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
 .racials .rh strong{font-size:16px}
@@ -185,7 +185,7 @@ body.cmp .removed{display:block}
 body.lang-en .race li span.en{color:var(--ink2);font-size:1em}
 body.lang-en .race li b i.en{font-weight:600;color:var(--gold)}
 
-/* ---------------- 种族基础属性 base stats ---------------- */
+/* ---------------- 绉嶆棌鍩虹灞炴€?base stats ---------------- */
 .basestats{margin-top:10px;background:var(--panel);border-radius:4px;padding:10px 12px}
 .main3 .basestats{padding:10px}
 .basestats .bshead{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:8px}
@@ -219,22 +219,22 @@ body.lang-en .race li b i.en{font-weight:600;color:var(--gold)}
 .basestats tbody td.na{color:var(--muted);font-style:italic;text-align:center}
 .basestats .bsnote{color:var(--muted);font-size:11px;margin:8px 2px 0;line-height:1.5}
 .basestats .bsnote .en{color:#6f7a83}
-/* 左栏窄版：转置后属性行×种族列 */
+/* 宸︽爮绐勭増锛氳浆缃悗灞炴€ц脳绉嶆棌鍒?*/
 .main3 .basestats table{font-size:12px}
 .main3 .basestats th,.main3 .basestats td{padding:3px 5px}
 .main3 .basestats tbody th{min-width:0;width:96px;font-size:12px}
 .main3 .basestats thead th{font-size:11px;padding:3px 4px}
-/* 种族对钩单选框（勾选后右栏面板跟随） */
+/* 绉嶆棌瀵归挬鍗曢€夋锛堝嬀閫夊悗鍙虫爮闈㈡澘璺熼殢锛?*/
 .basestats .racerdo{display:inline-flex;align-items:center;gap:3px;cursor:pointer;font-weight:600;white-space:nowrap}
 .basestats .racerdo input{appearance:none;-webkit-appearance:none;width:13px;height:13px;border:1px solid #7a8087;border-radius:50%;background:#1c1f24;position:relative;cursor:pointer;flex:0 0 auto;margin:0}
 .basestats .racerdo input:checked{background:var(--gold);border-color:#ffe066;box-shadow:0 0 4px rgba(255,215,0,.6)}
 .basestats .racerdo input:checked::after{content:"✓";position:absolute;left:1.5px;top:-3px;color:#000;font-size:12px;font-weight:900;line-height:1}
 .basestats .racerdo input:disabled{cursor:not-allowed;opacity:.28;border-color:#555}
 .basestats .racerdo input:disabled + span{opacity:.42}
-.basestats .racerdo input:disabled + span::after{content:"（暂无数据）";font-weight:400;font-size:10px;color:#8a6a6a;margin-left:2px}
+.basestats .racerdo input:disabled + span::after{content:"锛堟殏鏃犳暟鎹級";font-weight:400;font-size:10px;color:#8a6a6a;margin-left:2px}
 @media (max-width:760px){.basestats table{font-size:12px}.basestats th,.basestats td{padding:4px 6px}}
 
-/* ---------------- 职业技能书 spellbook（BlizzCon 2026 demo） ---------------- */
+/* ---------------- 鑱屼笟鎶€鑳戒功 spellbook锛圔lizzCon 2026 demo锛?---------------- */
 .spellbook{width:calc(100% - 330px);margin:12px 0 0;background:#121418;border:1px solid #2c313a;border-radius:4px;padding:8px 10px;box-sizing:border-box}
 @media (max-width:1280px){.spellbook{width:100%}}
 .spellbook .sbt{width:100%;text-align:left;background:#1a1d23;color:#e8e6e3;border:1px solid #3a3f48;border-radius:4px;padding:6px 8px;font-size:13px;cursor:pointer;line-height:1.4}
@@ -257,11 +257,11 @@ body.lang-en .race li b i.en{font-weight:600;color:var(--gold)}
 .spellbook .sbnotes .sbnt{font-size:12px;font-weight:700;color:var(--gold);margin-bottom:6px;letter-spacing:.3px}
 .spellbook .sbnotes .sbnt .en{color:#8a7a4f;font-weight:400}
 .spellbook .sbnotes p{color:#cfc9bd;font-size:12px;line-height:1.65;margin:0 0 7px;padding-left:10px;position:relative}
-.spellbook .sbnotes p::before{content:"·";position:absolute;left:2px;color:#ffd700;font-weight:700}
+.spellbook .sbnotes p::before{content:"路";position:absolute;left:2px;color:#ffd700;font-weight:700}
 .basestats .bsmin,.gearsim .gsmin{margin-left:auto;background:#1a1d23;color:#c9a86a;border:1px solid #3a3f48;border-radius:3px;padding:2px 8px;font-size:11.5px;cursor:pointer;white-space:nowrap}
 .basestats .bsmin:hover,.gearsim .gsmin:hover{border-color:#ffd700;color:#fff}
 
-/* ---------------- 30级装备配装 gear sim ---------------- */
+/* ---------------- 30绾ц澶囬厤瑁?gear sim ---------------- */
 .gearsim{margin-top:10px;background:var(--panel);border-radius:4px;padding:10px 12px;position:relative}
 .main3 .gearsim{padding:10px}
 .main3 .gearsim table.gp{font-size:12px}
@@ -314,14 +314,14 @@ body.lang-en .race li b i.en{font-weight:600;color:var(--gold)}
 .gearsim .gwnote .en{color:#8a7a4f}
 @media (max-width:760px){.gearsim .glist{min-width:250px;max-width:280px}.gearsim .gitem .gm{max-width:120px;overflow:hidden;text-overflow:ellipsis}.gearsim table.gp{font-size:11.5px}.gearsim table.gp th,.gearsim table.gp td{padding:3px 5px}}
 
-/* ---------------- 帮助文字 ---------------- */
+/* ---------------- 甯姪鏂囧瓧 ---------------- */
 .help{color:var(--muted);font-size:12px;margin:10px 2px 0;max-width:92ch}
 .help p{margin:0 0 6px}
 .help .pr.block>.en{color:#6f7a83}
 .help.src{color:#6f7a83}
 .help kbd{border:1px solid #444;border-radius:3px;padding:0 4px;background:#222;font-family:inherit}
 
-/* ---------------- 触屏底部面板 bottom sheet ---------------- */
+/* ---------------- 瑙﹀睆搴曢儴闈㈡澘 bottom sheet ---------------- */
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--tip-bg);border-top:1px solid var(--tip-line);padding:12px 14px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -10px 30px rgba(0,0,0,.6);font-size:14px;line-height:1.4;max-height:70vh;overflow:auto}
 .sheet[hidden]{display:none}
 .sheet .tip-body .n{font-size:16px;font-weight:600}
@@ -340,3 +340,48 @@ body.lang-en .race li b i.en{font-weight:600;color:var(--gold)}
 .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#000;color:#fff;padding:7px 14px;border-radius:4px;border:1px solid #555;opacity:0;transition:opacity .15s;pointer-events:none;font-size:13px;z-index:80;max-width:90vw;text-align:center}
 .toast.show{opacity:1}
 @media (prefers-reduced-motion:reduce){.toast{transition:none}}
+
+/* ---------------- 瑁呭鎯呮姤 gearinfo锛圔lizzCon 2026 Deep Dive锛?---------------- */
+.gearinfo{width:100%;margin-top:10px;background:#121418;border:1px solid #2c313a;border-radius:4px;padding:8px 10px;box-sizing:border-box}
+.main3 .gearinfo{margin-top:10px}
+.gearinfo .gih{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.gearinfo .gicollapse{margin-left:auto;background:#1a1d23;color:#c9a86a;border:1px solid #3a3f48;border-radius:3px;padding:2px 10px;font-size:11.5px;cursor:pointer;white-space:nowrap}
+.gearinfo .gicollapse:hover{border-color:#ffd700;color:#fff}
+.gearinfo.gi-fold .girules,.gearinfo.gi-fold .gicards,.gearinfo.gi-fold .girare:not(.gi-pin),.gearinfo.gi-fold .gisrc{display:none}
+.gearinfo .gih strong{font-size:15px;color:var(--gold)}
+.gearinfo .gih .gien{color:#8a7a4f;font-size:11.5px}
+.gearinfo .girules{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:6px;margin-bottom:10px}
+.gearinfo .gir{background:#1a1d23;border:1px solid #3a3f48;border-radius:4px;padding:6px 9px;font-size:12px;line-height:1.5}
+.gearinfo .girt{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.gearinfo .girt b{display:inline}
+.gearinfo .gibtn{flex:0 0 auto;background:#1a1d23;color:#6fc3ff;border:1px solid #3a3f48;border-radius:3px;padding:1px 8px;font-size:11px;cursor:pointer;white-space:nowrap}
+.gearinfo .gibtn:hover{border-color:#ffd700;color:#fff}
+.gearinfo .gidet{margin-top:5px;background:#101318;border:1px dashed rgba(111,195,255,.35);border-radius:4px;padding:6px 9px;font-size:11.5px;color:#c8d4de;line-height:1.65}
+.gearinfo .gidet b{color:#6fc3ff;display:inline}
+.gearinfo .gir b{color:var(--gold);display:block;margin-bottom:2px;font-size:12.5px}
+.gearinfo .gir span{color:#cfc9bd}
+.gearinfo .gicards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px}
+.gearinfo .gicard{background:#1a1d23;border:1px solid #3a3f48;border-radius:4px;padding:8px 10px;box-sizing:border-box}
+.gearinfo .gin{font-size:14px;font-weight:700;color:#e8e6e3;margin-bottom:3px}
+.gearinfo .gin .ginen{color:#6f7a83;font-weight:400;font-size:11.5px}
+.gearinfo .gimeta{font-size:11.5px;color:#9aa0a6;margin-bottom:5px}
+.gearinfo .gimeta .qpick{color:#ff8f6b}
+.gearinfo .gimeta .qboe{color:#6fc3ff}
+.gearinfo .gistat{font-size:12px;color:#e8e6e3;line-height:1.55}
+.gearinfo .gifrom{font-size:11px;color:#8a8f96;border-top:1px dashed rgba(255,255,255,.1);margin-top:5px;padding-top:4px;line-height:1.45}
+.gearinfo .gisrc{color:#6f7a83;font-size:10.5px;margin:8px 2px 0;line-height:1.45}
+.gearinfo .girare{background:#14181c;border:1px solid #2c313a;border-radius:4px;padding:7px 10px;margin-top:10px}
+.gearinfo .girh{font-size:12.5px;font-weight:700;color:var(--blue);margin-bottom:5px;letter-spacing:.3px}
+.gearinfo .girrow{font-size:12px;color:#cfc9bd;line-height:1.55;display:flex;gap:8px;flex-wrap:wrap;padding:1px 0}
+.gearinfo .girrow b{color:#e8e6e3;flex:0 0 auto}
+.gearinfo .girrow span{color:#9aa0a6}
+.gearinfo .girrow .gred{color:#ff6b6b;font-weight:700}
+.gearinfo .girrow .gred span{color:#ff8f8f}
+.gearinfo .girrow .gred{color:#ff6b6b;font-weight:700}
+.gearinfo .girrow .gred span{color:#ff8f8f}
+@media (max-width:1280px){.gearinfo{width:100%}}
+
+/* gearinfo hover preview */
+.giprev{position:fixed;z-index:99999;background:#0d0f13;border:1px solid #3a3f48;border-radius:4px;padding:6px;pointer-events:none;box-shadow:0 4px 24px rgba(0,0,0,.65);display:none;max-width:min(460px,70vw)}
+.giprev img{display:block;max-width:100%;height:auto;border-radius:2px}
+

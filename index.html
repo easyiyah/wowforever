@@ -6,7 +6,7 @@
 <title>永久服天赋模拟器 / Forever Talents</title>
 <meta name="description" content="魔兽世界经典旧世「永久服」60 级天赋计算器，中英双语对照本地版。WoW Classic Forever talent calculator, bilingual (Chinese / English) local edition.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23121212'/%3E%3Crect x='10' y='10' width='44' height='44' rx='8' fill='none' stroke='%23ffd100' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23ffd100'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="app.css?v=20260915c">
 </head>
 <body class="lang-both">
 <div class="app">
@@ -45,6 +45,189 @@
       <div class="gearsum" id="gearsum"></div>
       <div class="gearpanel" id="gearpanel"></div>
       <div class="gtip" id="gtip" hidden></div>
+    </section>
+    <section class="gearinfo gi-fold" id="gearinfoHost" aria-label="装备情报">
+      <div class="gih"><strong>装备情报</strong><span class="gien">Items &amp; Gear · BlizzCon 2026 Deep Dive</span><button type="button" class="gicollapse" onclick="var s=this.closest('.gearinfo');var f=s.classList.toggle('gi-fold');this.textContent=f?'展开':'收起';">展开</button></div>
+      <div class="girules">
+        <div class="gir">
+          <div class="girt"><b>命中 / 暴击统一</b><button type="button" class="gibtn" onclick="var d=this.parentNode.parentNode.querySelector('.gidet');var h=d.hidden;d.hidden=!h;this.textContent=h?'收起':'详解';">详解</button></div>
+          <span>近战、远程、法术（含毒药、陷阱）共用同一命中与暴击属性，不再分开堆叠。</span>
+          <div class="gidet" hidden>
+            经典服（1.12）里命中与暴击按「近战 / 远程 / 法术」分三套独立数值，装备上的命中通常只加其中一类。<br>
+            Forever 统一后：一件装备 +2% 命中 → 近战命中、远程命中、法术命中全部 +2%；暴击同理，一个暴击值近战 / 法术 / 远程通用。
+          </div>
+        </div>
+        <div class="gir"><b>武器技能削弱 → 专精</b><span>武器技能类属性大幅削弱，所有种族的武器技能加成被移除，由新属性「专精（Expertise，类似 TBC）」取代。</span></div>
+        <div class="gir"><b>治疗装自带伤害</b><span>所有带治疗加成的装备自动附带法术伤害，治疗职业野外也能打得动怪。</span></div>
+        <div class="gir"><b>法系武器双加成</b><span>法系武器从 10 级起就同时附带治疗与法术伤害加成。</span></div>
+        <div class="gir"><b>区域 / 物种特效</b><span>新增按地图区域触发的装备特效，以及针对特定生物（如狼人）的专属饰品。</span></div>
+        <div class="gir"><b>坦克新属性</b><span>新增「被躲闪 / 招架几率降低」类装备属性，面向坦克。</span></div>
+      </div>
+      <div class="gicards">
+        <div class="gicard" data-gimg="gear/lionheart_helm.png">
+          <div class="gin">狮心头盔 <span class="ginen">Lionheart Helm</span></div>
+          <div class="gimeta"><b class="qpick">拾取绑定</b> · 板甲 · 头部 · 需等级 56</div>
+          <div class="gistat">565 护甲</div>
+          <div class="gistat">+18 力量</div>
+          <div class="gistat">装备：命中提高 2.0%</div>
+          <div class="gistat">装备：暴击提高 2.0%</div>
+          <div class="gifrom">获取：官方未公布（经典服为锻造制造，Forever 来源待确认）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/hide_of_the_wild.png">
+          <div class="gin">荒野之皮 <span class="ginen">Hide of the Wild</span></div>
+          <div class="gimeta"><b class="qboe">装备绑定</b> · 披风 · 需等级 57</div>
+          <div class="gistat">48 护甲</div>
+          <div class="gistat">+10 智力、+8 耐力</div>
+          <div class="gistat">装备：所有法术治疗提高最多 42，伤害提高最多 14</div>
+          <div class="gifrom">获取：官方未公布（经典服为世界掉落，Forever 来源待确认）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/edgemasters.png">
+          <div class="gin">剑师护手 <span class="ginen">Edgemaster's Handguards</span></div>
+          <div class="gimeta"><b class="qboe">装备绑定</b> · 锁甲 · 手部 · 需等级 44</div>
+          <div class="gistat">201 护甲</div>
+          <div class="gistat">装备：被躲闪 / 招架几率降低 1.0%</div>
+          <div class="gistat">装备：+1 武器伤害</div>
+          <div class="gistat">装备：斧 +1、匕首 +1、剑 +1</div>
+          <div class="gifrom">获取：官方未公布（经典服为世界掉落，Forever 来源待确认）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/staff_of_westfall.png">
+          <div class="gin">西部荒野法杖 <span class="ginen">Staff of Westfall</span></div>
+          <div class="gimeta"><b class="qpick">拾取绑定</b> · 双手法杖</div>
+          <div class="gistat">速度 3.00 · 36-55 伤害（15.2 DPS）</div>
+          <div class="gistat">+5 智力、+6 精神</div>
+          <div class="gistat">装备：所有法术治疗提高最多 48，伤害提高最多 16</div>
+          <div class="gistat">装备：在艾尔文森林、西部荒野、赤脊山、死亡矿井移动速度提高 2%</div>
+          <div class="gifrom">获取：官方未公布（区域特效指向死亡矿井一带，疑为该区域任务 / 掉落，待确认）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/rune_of_perfection.png">
+          <div class="gin">完美符文 <span class="ginen">Rune of Perfection</span></div>
+          <div class="gimeta"><b class="qpick">拾取绑定</b> · 饰品（唯一：战斗符文）· 需等级 20</div>
+          <div class="gistat">+4 耐力</div>
+          <div class="gistat">装备：法术穿透 2 层魔法抗性；在森林与丛林区域，额外获得 3 法术穿透</div>
+          <div class="gifrom">获取：官方未公布（区域特效饰品，待确认）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/worgenbane_talisman.png">
+          <div class="gin">灭狼护符 <span class="ginen">Worgenbane Talisman</span></div>
+          <div class="gimeta"><b class="qpick">拾取绑定</b> · 饰品（唯一）· 需等级 21</div>
+          <div class="gistat">装备：每 5 秒恢复 2 点法力</div>
+          <div class="gistat">使用：眩晕狼人 4 秒（5 分钟冷却）</div>
+          <div class="gifrom">获取：官方未公布（狼人特效饰品，疑与暮色森林相关，待确认）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/xcaliboar.png">
+          <div class="gin">X'卡利巴尔 <span class="ginen">X'caliboar</span></div>
+          <div class="gimeta"><b class="qpick">拾取绑定</b> · 双手剑 · 需等级 37</div>
+          <div class="gistat">速度 3.30 · 98-148 伤害（37.3 DPS）</div>
+          <div class="gistat">+20 力量、+7 耐力</div>
+          <div class="gistat">击中时可能：释放强力挥击，造成 33-53 神圣伤害，对亡灵与野猪造成 3 倍伤害</div>
+          <div class="gifrom">获取：官方未公布（待确认）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/ankle_slicers.png">
+          <div class="gin">脚踝切割者 <span class="ginen">Ankle Slicers</span></div>
+          <div class="gimeta"><b class="qboe">装备绑定</b> · 投掷武器 · 需等级 58</div>
+          <div class="gistat">速度 1.80 · 51-96 伤害（40.8 DPS）</div>
+          <div class="gistat">+10 耐力</div>
+          <div class="gistat">装备：+12 攻击强度</div>
+          <div class="gistat">击中可能：切割目标脚踝，移动速度降低 30%，持续 6 秒</div>
+          <div class="gifrom">获取：世界掉落史诗（官方确认重做）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/skullflame_shield.png">
+          <div class="gin">颅焰之盾 <span class="ginen">Skullflame Shield</span></div>
+          <div class="gimeta"><b class="qboe">装备绑定</b> · 副手盾牌 · 需等级 54</div>
+          <div class="gistat">2256 护甲</div>
+          <div class="gistat">+10 火焰抗性、+10 暗影抗性</div>
+          <div class="gistat">装备：被击中时 3% 几率偷取攻击者 275 点生命</div>
+          <div class="gistat">装备：被击中时 2% 几率对周围所有敌人造成 91-143 火焰伤害</div>
+          <div class="gifrom">获取：世界掉落史诗（官方确认重做）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/stonewoven_gauntlets.png">
+          <div class="gin">碎石者护手 <span class="ginen">Stonerender Gauntlets</span></div>
+          <div class="gimeta"><b class="qboe">装备绑定</b> · 锁甲 · 手部 · 需等级 46</div>
+          <div class="gistat">209 护甲</div>
+          <div class="gistat">+20 力量、+7 智力、+15 耐力</div>
+          <div class="gistat">装备：法术伤害和治疗提高最多 21</div>
+          <div class="gifrom">获取：世界掉落史诗（官方确认重做）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/hurricane.png">
+          <div class="gin">飓风 <span class="ginen">Hurricane</span></div>
+          <div class="gimeta"><b class="qboe">装备绑定</b> · 远程弓 · 需等级 46</div>
+          <div class="gistat">速度 2.70 · 57-107 伤害（30.4 DPS）</div>
+          <div class="gistat">装备：所有远程自动攻击有机会点燃当前目标，造成 6-11 冰霜伤害</div>
+          <div class="gifrom">获取：世界掉落史诗（官方确认重做）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/defias_leggings.png">
+          <div class="gin">黑色迪菲亚护腿 <span class="ginen">Blackened Defias Leggings</span></div>
+          <div class="gimeta"><b class="qpick">拾取绑定</b> · 皮甲 · 腿部 · 需等级 14 · 迪菲亚皮革套装 0/5</div>
+          <div class="gistat">61 护甲、+6 力量、+6 敏捷</div>
+          <div class="gistat">(2) +5 奥术抗性；(3) 对人形生物 +15 攻击强度</div>
+          <div class="gistat">(5) 暴击时 5% 几率命中要害，造成 71-82 流血/8秒；(5) 匕首技能 +1</div>
+          <div class="gifrom">获取：地下城掉落（官方确认全部地下城 BOSS 掉落重做）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/fang_footpads.png">
+          <div class="gin">毒牙之足 <span class="ginen">Footpads of the Fang</span></div>
+          <div class="gimeta"><b class="qpick">拾取绑定</b> · 皮甲 · 腿部 · 需等级 17 · 毒蛇拥抱套装 0/5</div>
+          <div class="gistat">61 护甲、+6 敏捷、+6 耐力</div>
+          <div class="gistat">(2) +10 智力；(3) 生命低于 25% 时 5 秒内恢复 100 生命和法力（5 分钟触发一次）</div>
+          <div class="gistat">(5) 近战攻击有机会施加致命毒药</div>
+          <div class="gifrom">获取：地下城掉落（官方确认全部地下城 BOSS 掉落重做）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/ledtimore_ring.png">
+          <div class="gin">莱迪莫传家宝戒指 <span class="ginen">Ladimore Heirloom Ring</span></div>
+          <div class="gimeta"><b class="qpick">拾取绑定</b> · 戒指</div>
+          <div class="gistat">+6 智力</div>
+          <div class="gistat">装备：法术伤害和治疗提高最多 3</div>
+          <div class="gifrom">获取：暮色森林 莫尔拉蒂姆任务奖励（联盟，官方确认新增）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/master_hunters_sword.png">
+          <div class="gin">猎人大师法术剑 <span class="ginen">Master Hunter's Spellsword</span></div>
+          <div class="gimeta"><b class="qpick">拾取绑定</b> · 双手剑</div>
+          <div class="gistat">94 伤害 · 62.5 DPS</div>
+          <div class="gistat">+12 力量</div>
+          <div class="gistat">装备：法术伤害和治疗提高最多 14</div>
+          <div class="gifrom">获取：荆棘谷 赫米特·奈辛瓦里任务链（官方确认新增，为圣骑士设计）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/graverobbers_shovel.png">
+          <div class="gin">盗墓者之铲 <span class="ginen">Graverobber's Shovel</span></div>
+          <div class="gimeta"><b class="qpick">拾取绑定</b> · 独特 · 双手锤 · 需等级 23</div>
+          <div class="gistat">速度 3.70 · 68-102 伤害（23.0 DPS）</div>
+          <div class="gistat">+10 耐力；装备：+12 攻击强度（对亡灵额外 +12）</div>
+          <div class="gistat">使用：挖掘坟墓（乌鸦岭墓园、血色修道院墓园），2 分钟冷却，20 次充能</div>
+          <div class="gifrom">获取：官方未公布（新物品）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/sharpened_cutlery.png">
+          <div class="gin">磨利餐具 <span class="ginen">Sharpened Cutlery</span></div>
+          <div class="gimeta"><b class="qpick">拾取绑定</b> · 投掷武器 · 需等级 19</div>
+          <div class="gistat">速度 1.80 · 18-35 伤害（14.7 DPS）</div>
+          <div class="gistat">+4 耐力、+1 武器伤害</div>
+          <div class="gifrom">获取：官方未公布（新物品）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/tidal_charm.png">
+          <div class="gin">潮汐护符 <span class="ginen">Tidal Charm</span></div>
+          <div class="gimeta"><b class="qpick">拾取绑定</b> · 饰品 · 需等级 36</div>
+          <div class="gistat">使用：眩晕目标 3 秒；对娜迦眩晕 5 秒并返还 80% 冷却（15 分钟冷却）</div>
+          <div class="gifrom">获取：已更新物品（经典服为世界掉落，Forever 来源待确认）</div>
+        </div>
+        <div class="gicard" data-gimg="gear/whitemanes_chapeau.png">
+          <div class="gin">怀特迈恩之帽 <span class="ginen">Whitemane's Chapeau</span></div>
+          <div class="gimeta"><b class="qpick">拾取绑定</b> · 布甲 · 头部 · 需等级 39</div>
+          <div class="gistat">52 护甲</div>
+          <div class="gistat">+10 智力、+9 耐力、+12 精神</div>
+          <div class="gistat">装备：所有法术治疗提高最多 20、伤害最多 7</div>
+          <div class="gistat">装备：复活类法术施法时间降低 20%</div>
+          <div class="gifrom">获取：已更新物品（经典服为血色修道院相关，Forever 来源待确认）</div>
+        </div>
+      </div>
+      <div class="girare">
+        <div class="girh">稀有生物掉落（新增）</div>
+        <div class="girrow" data-gimg="gear/broken_tooth_hide.png"><b>断牙之皮</b><span>皮甲胸，34 级（稀有精英断牙掉落）</span></div>
+        <div class="girrow" data-gimg="gear/cliff_jumpers.png"><b>峭壁跳跃者</b><span>39 级靴子，降低坠落伤害</span></div>
+        <div class="girrow" data-gimg="gear/spider_swarm.png"><b>蜘蛛蜂群</b><span>21 级，5 次充能，召唤蜘蛛保护你 10 分钟</span></div>
+        <div class="girrow" data-gimg="gear/wintersaber_gloves.png"><b>冬泉谷雪豹衬里手套</b><span>54 级，冬泉谷坐骑移动速度 +6%</span></div>
+      </div>
+      <div class="girare gi-pin" data-gimg="gear/undead_touch.png">
+        <div class="girh">种族被动（扒自 Deep Dive 视频截图）</div>
+        <div class="girrow"><b class="gred">亡灵 · 死亡之触（Touch of the Grave）</b><span class="gred">被动：你的法术和攻击有 5% 几率从目标吸取生命，最多为你最大生命的 5%</span></div>
+      </div>
+      <p class="gisrc">数据来源：2026 暴雪嘉年华 WoW: Forever Deep Dive（Kris Zierhut 主讲）官方演示截图；Method / Output Lag 解读整理。装备数值为演示版，正式服可能调整。</p>
     </section>
     <section class="spellbook" id="spellbookHost" aria-label="职业技能书"></section>
   </div>

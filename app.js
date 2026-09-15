@@ -683,7 +683,7 @@
    *      技能描述与等级来自 spelldesc.js（SPELL_DESC["Cls|Name|Sub"]）
    *      中文名/图标 slug 来自 skills-cn.js（SKILL_ZH / SKILL_ICONS）
    * ================================================================== */
-  var sbOpen = true;                               /* 技能书面板默认展开 */
+  var sbOpen = false;                               /* 技能书面板默认收起 */
   var bsOpen = true;                               /* 种族属性表默认展开 */
   var gsOpen = true;                               /* 装备配装默认展开 */
   function zhSkill(name) { var z = (window.SKILL_ZH || {})[name]; return z || name; }
@@ -804,7 +804,7 @@
     return '<button type="button" class="sbt" id="sbToggle" aria-expanded="' + sbOpen + '">' +
       duo("职业技能书（BlizzCon 2026 试玩 · 38级）", "Spellbook (BlizzCon demo · Lv38)") +
       ' <span class="sbcls">' + duo(zhClass(cls), cls) + "</span> · " + cnt + duo(" 技能", " spells") +
-      ' <span class="sbarr">' + (sbOpen ? "▾" : "▸") + "</span></button>" +
+      ' <span class="sbarr">' + (sbOpen ? "收起" : "展开") + "</span></button>" +
       '<div class="sbb" id="sbBody"' + (sbOpen ? "" : " hidden") + ">" + g.join("") +
       (seen ? '<p class="sbsrc">' + duo("数据来源", "Source") + "：" + seen + "</p>" : "") +
       "</div>";
@@ -1358,7 +1358,7 @@
         sbOpen = !sbOpen;
         var body = $("#sbBody"), arr = sbt.querySelector(".sbarr");
         if (body) body.hidden = !sbOpen;
-        if (arr) arr.textContent = sbOpen ? "▾" : "▸";
+        if (arr) arr.textContent = sbOpen ? "收起" : "展开";
         sbt.setAttribute("aria-expanded", sbOpen);
         return;
       }
@@ -1435,4 +1435,49 @@
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
+})();
+
+// 装备情报 hover 原图预览
+(function () {
+  var prev = null;
+  function ensure() {
+    if (!prev) {
+      prev = document.createElement("div");
+      prev.className = "giprev";
+      prev.style.cssText = "position:fixed;z-index:99999;background:#0d0f13;border:1px solid #3a3f48;border-radius:4px;padding:6px;pointer-events:none;box-shadow:0 4px 24px rgba(0,0,0,.65);display:none;max-width:460px;width:max-content;";
+      document.body.appendChild(prev);
+    }
+    return prev;
+  }
+  var lastX = 0, lastY = 0;
+  function place() {
+    if (!prev || prev.style.display === "none") return;
+    var pw = prev.offsetWidth, ph = prev.offsetHeight;
+    var x = lastX + 14;
+    if (x + pw > window.innerWidth - 8) x = Math.max(8, lastX - pw - 14);
+    var y = lastY + 14;
+    if (y + ph > window.innerHeight - 8) y = Math.max(8, window.innerHeight - ph - 8);
+    prev.style.left = x + "px"; prev.style.top = y + "px";
+  }
+  document.addEventListener("mousemove", function (e) {
+    lastX = e.clientX; lastY = e.clientY;
+    if (prev && prev.style.display !== "none") place();
+  });
+  document.addEventListener("mouseover", function (e) {
+    var t = e.target && e.target.closest ? e.target.closest(".gicard[data-gimg], .girrow[data-gimg], .gi-pin[data-gimg]") : null;
+    if (!t) { if (prev) prev.style.display = "none"; return; }
+    var src = t.getAttribute("data-gimg");
+    if (!src) return;
+    var p = ensure();
+    var img = p.querySelector("img");
+    if (!img) { img = document.createElement("img"); img.style.cssText = "display:block;max-width:100%;height:auto;border-radius:2px;"; p.appendChild(img); }
+    img.onload = place;
+    img.src = src;
+    p.style.display = "block";
+    place();
+  });
+  document.addEventListener("mouseout", function (e) {
+    var t = e.target && e.target.closest ? e.target.closest(".gicard[data-gimg], .girrow[data-gimg], .gi-pin[data-gimg]") : null;
+    if (t && prev) prev.style.display = "none";
+  });
 })();
